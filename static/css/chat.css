@@ -1,33 +1,34 @@
 body.chat-page {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f0f2f5;
+    overflow: hidden; /* Hides the scrollbars */
 }
 
 .chat-container {
-    max-width: 600px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden; /* Hides overflow */
 }
-
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #0088cc;
+    padding: 10px; /* Reduce padding to make header smaller */
+    background-color: #0052cc;
     color: white;
+    border-bottom: 1px solid #d1d1d1;
 }
 
 header #logout-button {
-    background-color: #ff4d4d; /* Red color for logout button */
+    background-color: #e14e4e;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 25px;
     color: white;
     font-size: 16px;
@@ -37,163 +38,291 @@ header #logout-button {
 }
 
 header #logout-button:hover {
-    background-color: #cc0000; /* Darker red on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    background-color: #d43f3f;
+    transform: scale(1.05);
 }
 
 header #logout-button:active {
-    background-color: #b30000; /* Even darker red when button is pressed */
-    transform: scale(0.98); /* Slightly shrink the button on press */
+    background-color: #c03939;
+    transform: scale(0.95);
 }
 
 .chat-window {
-    flex: 1;
-    overflow-y: scroll;
-    padding: 10px;
-    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: calc(100% - 60px); /* Adjust height to fit within chat-container */
+    padding: 15px;
+    background-color: #fafafa;
+    overflow-y: auto; /* Enable vertical scroll only */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 #messages {
     display: flex;
     flex-direction: column;
+    height: calc(100% - 60px); /* Adjust height to fit within chat-window */
+    overflow-y: auto; /* Enable vertical scroll only */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 .message {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    animation: fadeIn 0.5s;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 12px;
+    max-width: 75%;
+    word-wrap: break-word;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .message img {
     max-width: 100%;
+    max-height: 200px; /* Set a specific max height */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer;
     border-radius: 8px;
 }
-
 .message.sent {
-    justify-content: flex-end;
+    background-color: #e4ffe4;
+    align-self: flex-end;
+    text-align: right;
 }
 
 .message.received {
-    justify-content: flex-start;
+    background-color: #e0e0e0;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.message strong {
+    margin-right: 5px;
 }
 
 .chat-input {
     display: flex;
     padding: 10px;
     border-top: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #ffffff;
+    box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
 }
 
 .chat-input input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 20px;
     margin-right: 10px;
     font-size: 16px;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
 #send-button {
-    background-color: #28a745; /* Green color for the button */
+    background-color: #28a745;
     border: none;
-    padding: 10px 20px;
+    padding: 12px;
     border-radius: 50%;
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px; /* Font size for the button text */
-    font-weight: bold;
-    text-transform: uppercase; /* Uppercase text */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-size: 20px;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 #send-button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.1); /* Slightly enlarge the button on hover */
+    background-color: #218838;
+    transform: scale(1.1);
 }
 
 #send-button:active {
-    background-color: #1e7e34; /* Even darker green when pressed */
-    transform: scale(0.95); /* Slightly shrink the button on press */
+    background-color: #1e7e34;
+    transform: scale(0.95);
 }
 
 .media-options {
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    background-color: #f4f4f4;
     border-top: 1px solid #ddd;
-    background-color: #fff;
 }
 
 .media-button {
-    background-color: #0088cc;
+    background-color: #007bff;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 50%;
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.media-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
 }
 
-@media (max-width: 600px) {
-    .chat-container {
-        height: 100%;
-        max-width: 100%;
-    }
+.media-button:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+#capture-button {
+    background-color: #007bff;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#capture-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+#capture-button:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+#video {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#canvas {
+    display: none;
 }
 
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 1; 
+    z-index: 1000; 
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
+    background-color: rgba(0,0,0,0.6); 
+    padding-top: 50px;
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: 5% auto; 
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    text-align: center;
+    border: 1px solid #ddd;
+    width: 90%; 
+    max-width: 600px; 
+    border-radius: 12px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-video {
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: auto;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+
+/* Close Button Styling */
+.close {
+    color: #f00; /* Bright red color for visibility */
+    font-size: 36px; /* Larger font size for better visibility */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    margin-left: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: #c00; /* Darker red on hover */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+.close:active {
+    color: #a00; /* Even darker red when button is pressed */
+    transform: scale(0.95); /* Slightly shrink the button on press */
+}
+
+/* Modal for displaying full-size images */
+.image-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.8); 
+    padding-top: 50px;
+    overflow: hidden;
+}
+
+.image-modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 80%; 
+    max-width: 800px; 
+    border-radius: 10px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.image-modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+}
+
+.close {
+    color: #f00; 
+    font-size: 36px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #c00;
+    transform: scale(1.1);
+}
+
+.close:active {
+    color: #a00;
+    transform: scale(0.95);
 }

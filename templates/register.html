@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    
+    </body>
+</html>>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <h1>Register</h1>
+        <form id="register-form" action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Register</button>
+        </form>
+        <a href="/login">Already have an account? Login here.</a>
+        <div id="message" class="message"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('register-form');
+            const messageDiv = document.getElementById('message');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(form);
+
+                fetch('/register', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        messageDiv.textContent = data.message;
+                        messageDiv.className = 'message success';
+                        form.reset(); // Reset the form
+                    } else {
+                        messageDiv.textContent = data.error || 'Registration failed!';
+                        messageDiv.className = 'message error';
+                    }
+                })
+                .catch(error => {
+                    messageDiv.textContent = 'An error occurred!';
+                    messageDiv.className = 'message error';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
