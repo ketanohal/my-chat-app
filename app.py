@@ -2,18 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from flask_pymongo import PyMongo
 from flask_socketio import SocketIO, emit
 from config import Config
-import os,app
+import os
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    print(f"Starting app on port {port}")  # Debugging line
-    app.run(host="0.0.0.0", port=port)
-
+# Initialize Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Initialize extensions
 mongo = PyMongo(app)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
 
+# Define routes
 @app.route('/')
 def home():
     return redirect(url_for('login'))
@@ -45,12 +44,11 @@ def register():
 def register_page():
     return render_template('register.html')
 
-
 @app.route('/logout')
 def logout():
     session.pop('username', None)  # Remove username from session
     return redirect(url_for('login', logout='success'))
-# Redirect to login page
+
 @app.route('/chat')
 def chat():
     if 'username' not in session:
@@ -73,9 +71,8 @@ def handle_fetch_messages():
     message_list = [{'username': msg['username'], 'message': msg['message']} for msg in messages]
     emit('messages', message_list)
 
+# Run the app
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     print(f"Starting app on port {port}")  # Debugging line
-    app.run(host="0.0.0.0", port=port)
-
-
+    socketio.run(app, host="0.0.0.0", port=port)
