@@ -17,12 +17,12 @@
             <div id="messages" data-username="{{ session['username'] }}"></div>
         </div>
         <div class="chat-input">
+            <div class="media-buttons">
+                <button id="image-button" class="media-button"><i class="fas fa-image"></i></button>
+                <button id="camera-button" class="media-button"><i class="fas fa-camera"></i></button>
+            </div>
             <input type="text" id="message-input" placeholder="Type a message">
             <button id="send-button"><i class="fas fa-paper-plane"></i></button>
-        </div>
-        <div class="media-options">
-            <button id="image-button" class="media-button"><i class="fas fa-image"></i></button>
-            <button id="camera-button" class="media-button"><i class="fas fa-camera"></i></button>
         </div>
     </div>
     
@@ -43,6 +43,7 @@
             <span id="close-image-modal" class="close">&times;</span>
             <img id="modal-image" src="" alt="Full Size Image">
         </div>
+    </div>
     
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>

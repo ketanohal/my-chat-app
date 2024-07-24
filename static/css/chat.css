@@ -15,15 +15,19 @@ body.chat-page {
     border-radius: 10px;
     overflow: hidden; /* Hides overflow */
 }
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px; /* Reduce padding to make header smaller */
+    padding: 5px 10px; /* Reduced padding to make header smaller */
     background-color: #0052cc;
     color: white;
+    height: 40px; /* Reduced height */
     border-bottom: 1px solid #d1d1d1;
+    font-size: 14px; /* Adjust this value as needed */
 }
+
 
 header #logout-button {
     background-color: #e14e4e;
@@ -52,16 +56,16 @@ header #logout-button:active {
     flex-direction: column;
     justify-content: flex-end;
     height: calc(100% - 60px); /* Adjust height to fit within chat-container */
-    padding: 15px;
+    padding: 5px;
     background-color: #fafafa;
     overflow-y: auto; /* Enable vertical scroll only */
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 #messages {
+    flex: 1; /* Allows #messages to grow and fill available space */
     display: flex;
     flex-direction: column;
-    height: calc(100% - 60px); /* Adjust height to fit within chat-window */
     overflow-y: auto; /* Enable vertical scroll only */
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
@@ -85,6 +89,7 @@ header #logout-button:active {
     cursor: pointer;
     border-radius: 8px;
 }
+
 .message.sent {
     background-color: #e4ffe4;
     align-self: flex-end;
@@ -103,6 +108,7 @@ header #logout-button:active {
 
 .chat-input {
     display: flex;
+    align-items: center; /* Align items to the center */
     padding: 10px;
     border-top: 1px solid #ddd;
     background-color: #ffffff;
@@ -144,12 +150,10 @@ header #logout-button:active {
     transform: scale(0.95);
 }
 
-.media-options {
+.media-buttons {
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border-top: 1px solid #ddd;
+    gap: 10px; /* Add gap between buttons */
+    margin-right: 10px; /* Add space between buttons and input */
 }
 
 .media-button {
