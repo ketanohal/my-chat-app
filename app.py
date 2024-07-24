@@ -2,6 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from flask_pymongo import PyMongo
 from flask_socketio import SocketIO, emit
 from config import Config
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Starting app on port {port}")  # Debugging line
+    app.run(host="0.0.0.0", port=port)
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -68,6 +74,8 @@ def handle_fetch_messages():
     emit('messages', message_list)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Starting app on port {port}")  # Debugging line
+    app.run(host="0.0.0.0", port=port)
 
 
